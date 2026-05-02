@@ -1,0 +1,6 @@
+{
+  "name": "Vendor WhatsApp Direct",
+  "description": "Dashboard sederhana untuk input data vendor, gaji, dan lokasi, lalu langsung dikirim ke WhatsApp dengan format rapi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
