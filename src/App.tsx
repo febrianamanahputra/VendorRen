@@ -175,11 +175,22 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center py-10 px-4 font-sans text-slate-900">
-      <div className="w-full max-w-lg bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100">
+    <div className="relative min-h-screen flex flex-col items-center justify-center py-10 px-4 font-sans text-slate-900 overflow-hidden">
+      {/* YouTube Video Background (5 seconds loop) */}
+      <div className="fixed inset-0 z-0 bg-slate-900">
+        <iframe
+          className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-60"
+          src="https://www.youtube.com/embed/lVy1WkkoMpg?autoplay=1&mute=1&controls=0&playsinline=1&loop=1&playlist=lVy1WkkoMpg&end=5"
+          allow="autoplay; encrypted-media"
+          title="Background Video"
+        />
+        <div className="absolute inset-0 bg-slate-900/50"></div>
+      </div>
+
+      <div className="relative z-10 w-full max-w-lg bg-white/40 backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden border border-white/30">
         
         {/* Header */}
-        <div className="bg-emerald-600 p-6 text-white text-center relative">
+        <div className="bg-emerald-600/80 p-6 text-white text-center relative backdrop-blur-md">
           <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-3">
             <Building2 className="w-6 h-6 text-white" />
           </div>
@@ -189,13 +200,13 @@ export default function App() {
 
         {/* List of Added Vendors */}
         {vendors.length > 0 && (
-          <div className="bg-emerald-50/50 border-b border-emerald-100 p-4">
-            <h2 className="text-sm font-semibold text-emerald-800 mb-3 flex items-center gap-2">
+          <div className="bg-emerald-50/40 border-b border-white/30 p-4 backdrop-blur-sm">
+            <h2 className="text-sm font-semibold text-emerald-900 mb-3 flex items-center gap-2">
               <ListPlus className="w-4 h-4" /> Daftar Vendor ({vendors.length})
             </h2>
             <div className="space-y-2 max-h-48 overflow-y-auto pr-2">
               {vendors.map(v => (
-                <div key={v.id} className="flex items-center justify-between bg-white border border-emerald-100 p-3 rounded-lg shadow-sm">
+                <div key={v.id} className="flex items-center justify-between bg-white/60 backdrop-blur-sm border border-white/50 p-3 rounded-lg shadow-sm">
                   <div>
                     <p className="font-semibold text-sm text-slate-800">
                       {v.name} <span className="text-xs font-normal text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full ml-1">{v.type}</span>
@@ -241,7 +252,7 @@ export default function App() {
                     required
                     value={formData.vendorName}
                     onChange={handleVendorChange}
-                    className="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors bg-slate-50 focus:bg-white appearance-none"
+                    className="block w-full pl-10 pr-3 py-2.5 border border-white/50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors bg-white/50 focus:bg-white/80 appearance-none backdrop-blur-sm shadow-sm"
                   >
                     {vendorNames.length === 0 && <option value="" disabled>Belum ada nama vendor</option>}
                     {vendorNames.map(name => (
@@ -272,7 +283,7 @@ export default function App() {
                     required
                     value={formData.vendorType}
                     onChange={handleVendorChange}
-                    className="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors bg-slate-50 focus:bg-white appearance-none"
+                    className="block w-full pl-10 pr-3 py-2.5 border border-white/50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors bg-white/50 focus:bg-white/80 appearance-none backdrop-blur-sm shadow-sm"
                   >
                     {vendorTypes.length === 0 && <option value="" disabled>Belum ada jenis</option>}
                     {vendorTypes.map(type => (
@@ -298,7 +309,7 @@ export default function App() {
                   value={formData.salary}
                   onChange={handleSalaryChange}
                   placeholder="Contoh: 500.000"
-                  className="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors bg-slate-50 focus:bg-white"
+                  className="block w-full pl-10 pr-3 py-2.5 border border-white/50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors bg-white/50 focus:bg-white/80 backdrop-blur-sm shadow-sm placeholder:text-slate-500"
                 />
               </div>
             </div>
@@ -325,7 +336,7 @@ export default function App() {
                   required
                   value={formData.location}
                   onChange={handleVendorChange}
-                  className="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors bg-slate-50 focus:bg-white appearance-none"
+                  className="block w-full pl-10 pr-3 py-2.5 border border-white/50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors bg-white/50 focus:bg-white/80 appearance-none backdrop-blur-sm shadow-sm"
                 >
                   {locations.length === 0 && <option value="" disabled>Belum ada lokasi</option>}
                   {locations.map(loc => (
@@ -337,30 +348,30 @@ export default function App() {
 
             <button
               type="submit"
-              className="w-full mt-2 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 font-semibold py-2.5 px-4 rounded-xl transition-colors flex justify-center items-center gap-2"
+              className="w-full mt-2 bg-emerald-100/70 hover:bg-emerald-200/80 text-emerald-900 font-semibold py-2.5 px-4 rounded-xl transition-colors flex justify-center items-center gap-2 backdrop-blur-sm"
             >
               <Plus className="w-5 h-5" />
               Tambah Vendor ke Daftar
             </button>
           </form>
 
-          <div className="my-6 border-t border-slate-200"></div>
+          <div className="my-6 border-t border-white/40"></div>
 
           {/* Send Section */}
           <div>
-             <label className="block text-sm font-medium text-slate-700 mb-1">
-                Nomor WA Tujuan <span className="text-slate-400 font-normal">(Opsional)</span>
+             <label className="block text-sm font-medium text-slate-800 mb-1">
+                Nomor WA Tujuan <span className="text-slate-600 font-normal">(Opsional)</span>
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Phone className="h-5 w-5 text-slate-400" />
+                  <Phone className="h-5 w-5 text-slate-500" />
                 </div>
                 <input
                   type="tel"
                   value={targetPhone}
                   onChange={(e) => setTargetPhone(e.target.value)}
                   placeholder="Contoh: 081234567890"
-                  className="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors bg-slate-50 focus:bg-white"
+                  className="block w-full pl-10 pr-3 py-2.5 border border-white/50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors bg-white/50 focus:bg-white/80 backdrop-blur-sm shadow-sm placeholder:text-slate-500"
                 />
               </div>
               <button
